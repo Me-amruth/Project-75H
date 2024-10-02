@@ -9,7 +9,6 @@ const { body, validationResult } = require('express-validator');
 
 const app = express();
 app.use(cors());
-
 app.use(bodyParser.json());
 
 // Serve static files from the public directory
@@ -156,9 +155,6 @@ app.get('/api/tasks/:date', authenticateToken, async (req, res) => {
     }
 });
 
-// Export the app for use in serverless functions
-module.exports = app;
-
 // Vercel specific code to start the server
 if (process.env.NODE_ENV !== 'production') {
     const PORT = process.env.PORT || 5000;
@@ -166,3 +162,6 @@ if (process.env.NODE_ENV !== 'production') {
         console.log(`Server is running on port ${PORT}`);
     });
 }
+
+// Export the app for use in serverless functions
+module.exports = app;
