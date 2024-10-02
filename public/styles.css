@@ -1,0 +1,299 @@
+/* General Reset */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+header {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+header h1,h2,h6 {
+    text-align: center;
+    margin: 0;
+}
+
+h4 {
+    margin: 0;
+}
+
+h6 {
+    font-size: 0.8rem;
+    color: rgba(0, 0, 0, 0.225);
+}
+
+h2 {
+    font-size: 1.2rem;
+    color: #00000027;
+}
+
+
+
+/* Main Container Styling */
+.container {
+    display: flex;
+    justify-content: space-between; /* Space between left and right containers */
+    align-items: flex-start; /* Align items to the top */
+    width: 90%;
+    max-width: 1200px; /* Limit the width on larger screens */
+    margin: auto;
+}
+
+/* Left Container Styling */
+.left-container {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 60%; /* Adjust width for left container */
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Right Container Styling */
+.right-container {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 35%; /* Adjust width for right container */
+    min-height: 600px;
+}
+
+/* Header Styling */
+h1 {
+    margin-bottom: 20px;
+}
+
+/* Button Styling */
+button, select {
+    padding: 10px 20px;
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 5px;
+    margin: 5px;
+    margin-top: 20px;
+    outline: none;
+}
+
+button.active {
+    background-color: rgb(60, 141, 255);
+    color: white;
+}
+
+select.active {
+    background-color: rgb(62, 62, 62);
+    color: white;
+    outline: none;
+}
+
+button:hover {
+    background-color: #ddd;
+}
+
+/* Tasks Styling */
+.tasks {
+    margin: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.task {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.task h1, .task .status {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+}
+
+.task h1 {
+    height: 130px;
+    text-align: left;
+    background-color: rgba(147, 147, 255, 0.234);
+    padding: 7px;
+    margin: 0;
+    border-right: 1px solid rgba(0, 0, 0, 0.268);
+    font-size: 1rem;
+    color: #000000a4;
+}
+
+.task .status {
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 6px;
+    margin: 5px;
+    height: 210px;
+}
+
+/* Color Indicators */
+.colors {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.color {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+#percentage {
+    display: flex;
+    flex-direction: column;
+}
+
+.color > * {
+    height: 15px;
+    width: 15px;
+    margin: 5px;
+    border: 1px solid #00000034;
+}
+
+.green {
+    background-color: lightgreen;
+}
+
+.yellow {
+    background-color: #FFD180;
+}
+
+.red {
+    background-color: #FF9999;
+}
+
+/* Pie Chart Styling */
+.pie-chart {
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: conic-gradient(
+        lightgreen 0% 33%,     /* 33% for good */
+        #FFD180 33% 66%,       /* 33% for average */
+        #FF9999 66% 100%       /* 33% for bad */
+    );
+}
+
+a {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.28);
+    text-align: center;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Stack containers vertically on smaller screens */
+        align-items: center;
+    }
+
+    .left-container, .right-container {
+        width: 100%; /* Full width on smaller screens */
+        margin: 10px 0; /* Add margin for spacing */
+    }
+
+    button {
+        padding: 8px 16px;
+    }
+
+    .task h1 {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .task h1 {
+        font-size: 0.8rem; /* Smaller font size for mobile */
+    }
+}
+
+
+/* Popup Window Styling  */
+
+.popup {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+}
+
+.popup-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 500px; /* Maximum width */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/* Styling account section */
+.account {
+    display: flex;
+    align-items: center;
+}
+
+#firstLetter {
+    height: 30px;
+    width: 30px;
+    background-color: #666;
+    border-radius: 50%;
+    padding: 8px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+input[type="button"] {
+    display: none;
+    margin: 7px;
+    background-color: rgba(0,0,0,0.12);
+    border: none;
+    border-radius: 15px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#username {
+    display: none;
+}

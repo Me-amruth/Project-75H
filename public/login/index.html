@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/login/styles.css">
+    <title>Login</title>
+</head>
+
+<body>
+    <div class="container">
+
+        <form id="loginForm">
+            <h1>Login</h1>
+            <div class="input-group">
+                <input type="text" id="username" required>
+                <label for="username">Enter Your Username</label>
+                <p class="error-message" id="loginUsernameError"></p>
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" required>
+                <label for="password">Enter Password</label>
+                <p class="error-message" id="loginPasswordError"></p>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+
+        <form id="registerForm">
+            <h1>SignUp</h1>
+            <div class="input-group">
+                <input type="text" id="registerUsername" required>
+                <label for="registerUsername">Enter Your Username</label>
+                <p class="error-message" id="registerUsernameError"></p>
+            </div>
+            <div class="input-group">
+                <input type="password" id="registerPassword" required>
+                <label for="registerPassword">Enter Password</label>
+                <p class="error-message" id="registerPasswordError"></p>
+            </div>
+            <button type="submit">Register</button>
+        </form>
+
+        <p id="switchForm">I don't have an account</p>
+
+    </div>
+
+    <script>
+        const loginForm = document.getElementById("loginForm");
+        const registerForm = document.getElementById("registerForm");
+        const switchForm = document.getElementById("switchForm");
+
+        // Initially hide the register form
+        registerForm.style.display = 'none';
+
+        // Toggle between the login and register forms
+        switchForm.addEventListener('click', () => {
+            if (loginForm.style.display === 'none') {
+                loginForm.style.display = 'flex';
+                registerForm.style.display = 'none';
+                switchForm.textContent = "I don't have an account";
+            } else {
+                loginForm.style.display = 'none';
+                registerForm.style.display = 'flex';
+                switchForm.textContent = "I already have an account";
+            }
+        });
+
+        // Login form validation
+        loginForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            let valid = true;
+
+            // Clear previous error messages
+            document.getElementById('loginUsernameError').textContent = '';
+            document.getElementById('loginPasswordError').textContent = '';
+
+            // Username validation
+            if (username.trim() === "") {
+                document.getElementById('loginUsernameError').textContent = 'Username is required';
+                valid = false;
+            }
+
+            // Password validation
+            if (password.trim() === "") {
+                document.getElementById('loginPasswordError').textContent = 'Password is required';
+                valid = false;
+            }
+
+            if (valid) {
+
+                fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.token) {
+                            localStorage.setItem('token', data.token);
+                            localStorage.setItem('dayTrackerUsername', username);
+                            location.href = '/';
+                        } else {
+                            document.getElementById('loginPasswordError').textContent = data.error || 'Login failed';
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
+        });
+
+        // Register form validation
+        registerForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const registerUsername = document.getElementById('registerUsername').value;
+            const registerPassword = document.getElementById('registerPassword').value;
+            let valid = true;
+
+            // Clear previous error messages
+            document.getElementById('registerUsernameError').textContent = '';
+            document.getElementById('registerPasswordError').textContent = '';
+
+            // Username validation
+            if (registerUsername.trim() === "") {
+                document.getElementById('registerUsernameError').textContent = 'Username is required';
+                valid = false;
+            }
+
+            // Password validation (minimum 6 characters)
+            if (registerPassword.trim() === "") {
+                document.getElementById('registerPasswordError').textContent = 'Password is required';
+                valid = false;
+            } else if (registerPassword.length < 6) {
+                document.getElementById('registerPasswordError').textContent = 'Password must be at least 6 characters long';
+                valid = false;
+            }
+
+            if (valid) {
+
+                fetch('/api/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username: registerUsername, password: registerPassword })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.message) {
+                            alert('Registration successful! Login to continue');
+                        } else {
+                            document.getElementById('registerPasswordError').textContent = data.error || 'Registration failed';
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
+        });
+    </script>
+
+    <style>
+        /* Add some basic styling for better visibility */
+        .error-message {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        /* Container and input styling can be added here for better UI */
+    </style>
+
+</body>
+
+</html>

@@ -1,0 +1,102 @@
+html,body {
+    padding: 0;
+    margin: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(120deg,#5a28ffe2, #58ce6c);
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+.container {
+    margin: 30px auto;
+    height: 200px;
+    width: 400px;
+}
+
+.container form {
+    background-color: rgba(255,255,255,0.28);
+    text-align: center;
+    color: rgba(240, 248, 255, 0.726);
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form > * {
+    margin-bottom: 22px;
+}
+
+form input,
+.input-group {
+    height: 30px;
+    width: 260px;
+}
+
+form input {
+    border: none;
+    background-color: rgba(0,0,0,0.13);
+    border-radius: 8px;
+    padding: 5px;
+    outline: none;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+.input-group label {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    color: rgba(255, 255, 255, 0.405);
+    cursor: text;
+    letter-spacing: 1px;
+    transition: all 0.3s ease-in-out;
+}
+
+button {
+    width: 100px;
+    height: 33.3px;
+    border-radius: 50px;
+    border: none;
+    color: rgba(0, 0, 0, 0.338);
+    background-color: rgba(255, 255, 255, 0.405);
+}
+
+button:hover {
+    background-color: rgba(0, 0, 0, 0.338);
+    color: rgba(255, 255, 255, 0.405);
+    cursor: pointer;
+}
+
+.input-group input:valid ~ label,
+.input-group input:focus ~ label {
+    top: -10px;
+    font-size: 0.5rem;
+    color: rgba(82, 245, 212, 0.701);
+}
+
+.input-group {
+    position: relative;
+    transition: all 1s ease-in-out 1s;
+}
+
+#switchForm {
+    color: rgba(255, 255, 255, 0.515);
+    cursor: pointer;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+#switchForm:hover {
+    text-decoration: underline;
+}
+

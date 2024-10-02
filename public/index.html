@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <div class="account">
+            <span id="firstLetter" onclick="openInfo()"></span>
+            <h4 id="username"></h4>
+            <input type="button" value="Logout" onclick="logout()" id="logout">
+        </div>
+        <div>
+            <h1>Day Tracker</h1>
+            <h6>"Believe, achieve, succeed."</h6>
+        </div>
+    </header>
+    <div class="container">
+        <div class="left-container">
+            <h2 id="dateDisplay">Daily Route</h2>
+            <div class="days">
+                <select id="allDate" onchange="changeDate(this)">
+                    <option value="none">...</option>
+                </select>
+                <button onclick="showTodayDate();">Today</button>
+            </div>
+            <form id="trackerForm">
+                <input type="hidden" id="date">
+                <div class="tasks" id="task-container"></div>
+            </form>
+            <a href="#rules" id="openPopup">Click here to read rules</a>
+        </div>
+
+        <div class="right-container">
+            <h2>Insights</h2>
+            <div class="colors">
+                <div class="color">
+                    <div class="green"></div> Good
+                </div>
+                <div class="color">
+                    <div class="yellow"></div> Average
+                </div>
+                <div class="color">
+                    <div class="red"></div> Bad
+                </div>
+            </div>
+            <div class="pie-chart" id="pieChart"></div>
+            <div id="percentage" class="color"></div>
+        </div>
+    </div>
+
+    <!-- Popup Window  -->
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close" id="closePopup">&times;</span>
+            <h2>Rules</h2>
+            <p>
+                Follow the guidelines below to evaluate your daily tasks accurately:
+            </p>
+            <b>Wakeup:</b> 5AM to 7AM Good, 7AM to 9AM Average, Other than Bad <br>
+            <b>Learning:</b> Read/Learn, 2 Hr Good, 1 Hr Average, less than 1 Hr Bad <br>
+            <b>Sunlight:</b> 10 to 15 minutes Good, 5 to 10 minutes Average, less than 5 minutes Bad <br>
+            <b>Drink Water:</b> 5 glasses or more Good, 3 to 5 glasses Average, less than 3 glasses Bad <br>
+            <b>Workout:</b> 1 Hr or more Good, 30 minutes to 1 Hr Average, less than 30 minutes Bad <br>
+            <b>Food Timing:</b> Based on when, what, how you eat the food <br>
+            <b>Sleeping:</b> 6 to 8 Hr Good, 3 to 5 Hr Average, Less than that Bad
+        </div>
+    </div>
+    <!-- Popup Window Close  -->
+
+    <script src="script.js"></script>
+</body>
+
+</html>
