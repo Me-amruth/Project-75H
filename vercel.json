@@ -3,7 +3,7 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "/api/index.js"  // Adjust based on your actual entry file for the API
+      "dest": "/api/index.js"
     }
   ]
 }
