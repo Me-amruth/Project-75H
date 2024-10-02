@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const bodyParser = require('body-parser');
-const path = require('path');
 const cors = require('cors');
 const { body, validationResult } = require('express-validator');
 
