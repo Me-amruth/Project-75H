@@ -90,7 +90,23 @@
             }
 
             if (valid) {
-                 login(username, password)
+
+                fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.token) {
+                            localStorage.setItem('token', data.token);
+                            localStorage.setItem('dayTrackerUsername', username);
+                            location.href = '/';
+                        } else {
+                            document.getElementById('loginPasswordError').textContent = data.error || 'Login failed';
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
             }
         });
 
@@ -138,30 +154,6 @@
                     .catch(error => console.error('Error:', error));
             }
         });
-
-        async function login(username, password) {
-    try {
-        const response = await fetch('/api/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ username, password }),
-        });
-
-        if (!response.ok) {
-            const error = await response.json();
-           document.getElementById('loginPasswordError').textContent = data.error || 'Login failed';
-        }
-
-        const data = await response.json();
-        console.log('Login successful!', data);
-        // Handle successful login (e.g., store token)
-    } catch (error) {
-        console.error('Error during login:', error);
-    }
-}
-
     </script>
 
     <style>
