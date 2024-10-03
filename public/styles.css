@@ -116,31 +116,32 @@ button:hover {
 
 .task {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    max-width: 400px;
+    flex-grow: 1;
 }
 
-.task h1, .task .status {
+/* .task h1, .task .status {
     writing-mode: vertical-rl;
     text-orientation: mixed;
-}
+} */
 
 .task h1 {
-    height: 130px;
     text-align: left;
     background-color: rgba(147, 147, 255, 0.234);
-    padding: 7px;
+    padding: 10px;
     margin: 0;
     border-right: 1px solid rgba(0, 0, 0, 0.268);
     font-size: 1rem;
     color: #000000a4;
+    width: 105px;
 }
 
-.task .status {
+.status {
     background-color: rgba(0, 0, 0, 0.1);
-    padding: 6px;
+    padding: 9px;
     margin: 5px;
-    height: 210px;
 }
 
 /* Color Indicators */
@@ -296,4 +297,16 @@ input[type="button"] {
 
 #username {
     display: none;
+}
+
+
+@media (max-width: 465px) {
+    .task {
+        flex-direction: column;
+    }
+
+    .task h1, .task .status {
+        width: 100%;
+        
+    }
 }
